@@ -5,3 +5,5 @@ librosa
 flask
 fastapi
 boto3
+flask_cors
+pillow
