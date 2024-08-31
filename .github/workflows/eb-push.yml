@@ -51,4 +51,4 @@ jobs:
 
       - name: Deploy to Elastic Beanstalk
         run:
-          eb deploy --region ${{ secrets.AWS_REGION }} --environment-name Mood-docker-env
+          eb deploy Mood-docker-env
