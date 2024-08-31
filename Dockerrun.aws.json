@@ -1,11 +1,12 @@
 {
-  "AWSEBDockerrunVersion": 3,
-  "containerDefinitions": [
+  "AWSEBDockerrunVersion": 1,
+  "Image": {
+    "Name": "tmsasikumar/emotion_image_recognition:latest",
+    "Update": "true"
+  },
+  "Ports": [
     {
-      "name": "my-container",
-      "image": "tmsasikumar/emotion_image_recognition:latest",
-      "essential": true,
-      "memory": 512
+      "ContainerPort": 80
     }
   ]
 }
