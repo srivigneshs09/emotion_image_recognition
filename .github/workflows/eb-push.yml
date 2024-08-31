@@ -55,7 +55,7 @@ jobs:
 
       - name: Initialize Elastic Beanstalk
         run: |
-          eb init -p docker mood-final --region ap-south-1
+          eb init -p docker mood-final-v2 --region ap-south-1
 
       - name: Deploy to Elastic Beanstalk
         run:
