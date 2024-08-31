@@ -31,15 +31,12 @@ jobs:
           docker push tmsasikumar/emotion_image_recognition:latest
 
       - name: Deploy to Elastic Beanstalk
-        uses: aws-actions/elastic-beanstalk-deploy@v2
-        with:
-          application-name: mood-docker
-          environment-name: Mood-docker-env
-          version-label: ${{ github.sha }}
-          region: ${{ secrets.AWS_REGION }}
-          bucket-name: ${{ secrets.S3_BUCKET }}
-          bucket-key: ${{ secrets.S3_KEY }}
-          docker-image-name: tmsasikumar/emotion_image_recognition:latest
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws elasticbeanstalk create-application-version \
+            --application-name       mood-docker
+            --version-label ${{ github.sha }} \
+            --source-bundle S3Bucket=${{ secrets.S3_BUCKET }}
+          
+          aws elasticbeanstalk update-environment \
+                    --environment-name Mood-docker-env   \
+                    --version-label ${{ github.sha }}
