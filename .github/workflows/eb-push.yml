@@ -55,4 +55,4 @@ jobs:
 
       - name: Deploy to Elastic Beanstalk
         run:
-          eb deploy Mood-docker-env --label $(date +%Y%m%d%H%M%S)
+          eb deploy --label $(date +%Y%m%d%H%M%S)
