@@ -32,11 +32,8 @@ jobs:
 
       - name: Deploy to Elastic Beanstalk
         run: |
-          aws elasticbeanstalk create-application-version \
-            --application-name       mood-docker
-            --version-label ${{ github.sha }} \
-            --source-bundle S3Bucket=${{ secrets.S3_BUCKET }}
-          
           aws elasticbeanstalk update-environment \
+                   --application-name       mood-docker \
                     --environment-name Mood-docker-env   \
                     --version-label ${{ github.sha }}
+                     --option-settings file://.elasticbeanstalk/config.yml

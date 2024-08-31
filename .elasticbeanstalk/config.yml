@@ -1,0 +1,5 @@
+option_settings:
+  aws:elasticbeanstalk:container:docker:
+    Image: "tmsasikumar/emotion_image_recognition:latest"
+    ImageRepository: "DockerHub"
+    ImageTag: "latest"
