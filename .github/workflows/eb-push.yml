@@ -57,4 +57,4 @@ jobs:
 
       - name: Deploy to Elastic Beanstalk
         run:
-          eb deploy --label "version-1"
+          eb deploy --label $(date +%Y%m%d%H%M%S)
