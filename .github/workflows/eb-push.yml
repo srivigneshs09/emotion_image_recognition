@@ -52,6 +52,7 @@ jobs:
       - name: Initialize Elastic Beanstalk
         run: |
           eb init -p docker mood-docker --region ap-south-1
+
       - name: Deploy to Elastic Beanstalk
         run:
-          eb deploy Mood-docker-env
+          eb deploy Mood-docker-env --label $(date +%Y%m%d%H%M%S)
