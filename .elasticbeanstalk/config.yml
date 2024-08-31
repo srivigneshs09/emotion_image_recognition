@@ -1,5 +1,0 @@
-global:
-  application_name: emotion-recognition
-  default_platform: Docker
-  profile: default
-  workspace_type: Application
