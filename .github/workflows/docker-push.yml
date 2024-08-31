@@ -1,4 +1,4 @@
-name: Build and Push Docker Image
+name: Build and Push Docker Image and deploy to elastic beanstalk
 
 on:
   push:
@@ -29,3 +29,17 @@ jobs:
       - name: Push Docker image
         run: |
           docker push tmsasikumar/emotion_image_recognition:latest
+
+      - name: Deploy to Elastic Beanstalk
+        uses: aws-actions/elastic-beanstalk-deploy@v2
+        with:
+          application-name: mood-docker
+          environment-name: Mood-docker-env
+          version-label: ${{ github.sha }}
+          region: ${{ secrets.AWS_REGION }}
+          bucket-name: ${{ secrets.S3_BUCKET }}
+          bucket-key: ${{ secrets.S3_KEY }}
+          docker-image-name: tmsasikumar/emotion_image_recognition:latest
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
