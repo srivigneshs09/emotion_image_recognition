@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -53,7 +55,7 @@ jobs:
 
       - name: Initialize Elastic Beanstalk
         run: |
-          eb init -p docker mood-docker --region ap-south-1
+          eb init -p docker mood-final --region ap-south-1
 
       - name: Deploy to Elastic Beanstalk
         run:
