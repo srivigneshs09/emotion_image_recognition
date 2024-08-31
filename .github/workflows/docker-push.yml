@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up AWS CLI
+        uses: aws-actions/aws-cli-action@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 #      - name: Checkout code
 #        uses: actions/checkout@v3
 #
@@ -31,10 +37,5 @@ jobs:
 #          docker push tmsasikumar/emotion_image_recognition:latest
 
       - name: Deploy to Elastic Beanstalk
-        run: |
-          aws elasticbeanstalk update-environment \
-                   --application-name       mood-docker \
-                   --environment-name Mood-docker-env   \
-                   --version-label ${{ github.sha }}
-                   --option-settings Namespace=aws:elasticbeanstalk:container:docker,OptionName=Image,Value=tmsasikumar/emotion_image_recognition:latest \
-                   --debug
+        run:
+          eb deploy --region ${{ secrets.AWS_REGION }} --application-name mood-docker--environment-name Mood-docker-env 

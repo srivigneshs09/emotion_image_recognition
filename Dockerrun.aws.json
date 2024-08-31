@@ -1,0 +1,11 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "name": "my-container",
+      "image": "tmsasikumar/emotion_image_recognition:latest",
+      "essential": true,
+      "memory": 512
+    }
+  ]
+}
