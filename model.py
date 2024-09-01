@@ -20,7 +20,7 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 # Create ImageDataGenerator for training and validation
 train_datagen = ImageDataGenerator(
     rescale=1./255,
-    validation_split=0.5  # 20% of data will be used for validation
+    validation_split=0.3  # 20% of data will be used for validation
 )
 
 train_generator = train_datagen.flow_from_directory(
