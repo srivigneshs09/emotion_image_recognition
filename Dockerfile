@@ -1,6 +1,5 @@
-FROM python:3.9-slim
+FROM python:3.9-buster
 
-# Install system dependencies needed by h5py and other packages
 RUN apt-get update && apt-get install -y \
     build-essential \
     libhdf5-dev \
