@@ -5,20 +5,19 @@ RUN apt-get update && apt-get install -y \
     libhdf5-dev \
     python3-dev \
     pkg-config \
-    && apt-get clean
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-# Copy and install Python dependencies
 COPY requirements.txt requirements.txt
-RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip \
+    && pip install --default-timeout=1000 --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code
 COPY . .
 
 EXPOSE 80
 EXPOSE 8080
 EXPOSE 5000
-# Run the application
+
 CMD ["python", "application.py"]
